@@ -10,6 +10,10 @@ sealed class ProductCode {
     data class Gizmo(val code: GizmoCode) : ProductCode()
 }
 
+/**
+ * This is a good place to use refined types with all validation under the hood
+ * see: https://kotlinlang.slack.com/archives/CJ699L62W/p1660928963300529
+ */
 typealias UnitQuantity = Int
 typealias KilogramQuantity = Float
 
