@@ -32,14 +32,7 @@ fun main() {
     val contactWithMail = Contact("Charlie Sheen", EmailContactInfo("charlie@mail.com").leftIor())
     val contactWithAddress = Contact("Miamoto Musassi", AddressContactInfo("Tokyo").rightIor())
 
-    val result: List<ContactInfo> = listOf(contactWithAddress, contactWithMail)
-        .fold(emptyList()) { acc, i ->
-            return@fold when {
-                i.contactInfo.isRight || i.contactInfo.isBoth -> acc + i.contactInfo as AddressContactInfo
-                i.contactInfo.isLeft -> acc
-                else -> acc
-            }
-        }
+    val result = listOf(contactWithAddress, contactWithMail).filter { it.contactInfo.isRight }
 
     result.forEach {
         println(it.contactInfo)
