@@ -48,11 +48,26 @@ data class Order(
     val amountToBill: BillingAmount,
 )
 
+typealias UnvalidatedCustomerInfo = String
+typealias  UnvalidatedShippingAddress = String
+
 data class UnvalidatedOrder(
     val orderId: String,
-    val customerInfo: CustomerInfo,
-    val shippingAddress: ShippingAddress,
+    val customerInfo: UnvalidatedCustomerInfo,
+    val shippingAddress: UnvalidatedShippingAddress,
 )
+
+typealias ValidatedCustomerInfo = String
+typealias ValidatedShippingAddress = String
+
+data class ValidatedOrder(
+    val orderId: String,
+    val customerInfo: ValidatedCustomerInfo,
+    val validatedShippingAddress: ValidatedShippingAddress
+)
+
+
+typealias ValidateOrder = (UnvalidatedOrder) -> ValidatedOrder
 
 object PlaceOrderEvents // TODO: fill
 data class PlaceOrderError(val errors: List<Throwable>)
